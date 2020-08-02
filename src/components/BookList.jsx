@@ -1,19 +1,23 @@
 import React, { useContext } from 'react'
-import { ThemeContext } from '../contexts/ThemeContext';
 import { BookContext } from '../contexts/BookContext';
+import BookDetails from './BookDetails';
 
 const BookList = () => {
-  const { isLightTheme, light, dark } = useContext(ThemeContext);
-  const { books } = useContext(BookContext)
-  const theme = isLightTheme ? light : dark;
-  return (
-    <div className="book-list" style={{ color: theme.syntax, background: theme.bg }}>
+  const { books } = useContext(BookContext);
+  const list = books.length !== 0
+    ?
+    <div className="book-list">
       <ul>
-        {books.map(book => (
-          <li key={book.id} style={{ background: theme.ui }}>{book.title}</li>
-        ))}
+        {books.map(book => <BookDetails key={book.id} book={book} />)}
       </ul>
     </div>
+    :
+    <div className="empty">
+      No books to read, hello freetime!
+    </div>
+
+  return (
+    list
   )
 }
 

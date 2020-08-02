@@ -4,9 +4,13 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import BookContextProvider from './contexts/BookContext';
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BookContextProvider>
+      <App />
+    </BookContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
